@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace xadrez_console.Tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
         public Posicao posicao { get; set; }
         public Cor cor { get; protected set; }
-        public int  QteMovimentos { get; protected set; }
+        public int QteMovimentos { get; protected set; }
         public Tabuleiro tab { get; protected set; }
 
         public Peca(Cor cor, Tabuleiro tab)
@@ -30,5 +30,8 @@ namespace xadrez_console.Tabuleiro
         {
             QteMovimentos++;
         }
+
+        public abstract bool[,] movimentosPossiveis();
+       
     }
 }

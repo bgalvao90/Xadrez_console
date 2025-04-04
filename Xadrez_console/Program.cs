@@ -8,12 +8,19 @@ try {
     while (!partida.Terminada) { 
 
         Console.Clear();
-        Tela.ImprimirTabuleiro(partida.tab);
+        Tela.imprimirTabuleiro(partida.tab);
         
         Console.WriteLine();
 
         Console.Write("Origem: ");
         Posicao Origem = Tela.lerPosicaoXadrez().toPosicao();
+
+        bool[,] posicoesPossiveis = partida.tab.peca(Origem).movimentosPossiveis();
+
+        Console.Clear();
+        Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
+
+        Console.WriteLine();
         Console.Write("Destino: ");
         Posicao Destino = Tela.lerPosicaoXadrez().toPosicao();
 
