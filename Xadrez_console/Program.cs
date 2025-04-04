@@ -6,14 +6,10 @@ try {
     PartidaXadrez partida = new PartidaXadrez();
 
     while (!partida.Terminada) {
-        try { 
-        Console.Clear();
-        Tela.imprimirTabuleiro(partida.tab);
         
-        Console.WriteLine();
-        Console.WriteLine("Turno: " + partida.turno);
-        Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
-
+        try {
+            Console.Clear();
+            Tela.imprimirPartida(partida);
         Console.Write("Origem: ");
         Posicao Origem = Tela.lerPosicaoXadrez().toPosicao();
         partida.validarPosicaoOrigem(Origem);
