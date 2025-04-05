@@ -2,27 +2,30 @@
 using Xadrez_console;
 using Xadrez_console.tabuleiro;
 using Xadrez_console.xadrez;
-try {
+try
+{
     PartidaXadrez partida = new PartidaXadrez();
 
-    while (!partida.terminada) {
-        
-        try {
+    while (!partida.terminada)
+    {
+
+        try
+        {
             Console.Clear();
             Tela.imprimirPartida(partida);
-        Console.Write("Origem: ");
-        Posicao Origem = Tela.lerPosicaoXadrez().toPosicao();
-        partida.validarPosicaoOrigem(Origem);
+            Console.Write("Origem: ");
+            Posicao Origem = Tela.lerPosicaoXadrez().toPosicao();
+            partida.validarPosicaoOrigem(Origem);
 
-        bool[,] posicoesPossiveis = partida.tab.peca(Origem).movimentosPossiveis();
+            bool[,] posicoesPossiveis = partida.tab.peca(Origem).movimentosPossiveis();
 
-        Console.Clear();
-        Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
+            Console.Clear();
+            Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
 
-        Console.WriteLine();
-        Console.Write("Destino: ");
-        Posicao Destino = Tela.lerPosicaoXadrez().toPosicao();
-        partida.validarPosicaoDestino(Origem, Destino);
+            Console.WriteLine();
+            Console.Write("Destino: ");
+            Posicao Destino = Tela.lerPosicaoXadrez().toPosicao();
+            partida.validarPosicaoDestino(Origem, Destino);
 
 
             partida.realizaJogada(Origem, Destino);
@@ -32,6 +35,8 @@ try {
             Console.WriteLine(e.Message);
             Console.ReadLine();
         }
+        Console.Clear();
+        Tela.imprimirPartida(partida);
     }
 }
 catch (TabuleiroException e)
