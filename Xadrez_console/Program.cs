@@ -5,7 +5,7 @@ using Xadrez_console.xadrez;
 try {
     PartidaXadrez partida = new PartidaXadrez();
 
-    while (!partida.Terminada) {
+    while (!partida.terminada) {
         
         try {
             Console.Clear();
