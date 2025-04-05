@@ -12,8 +12,8 @@ namespace Xadrez_console.xadrez
     class PartidaXadrez
     {
         public Tabuleiro tab { get; private set; }
-        public int turno;
-        public Cor jogadorAtual;
+        public int turno { get; private set; }
+        public Cor jogadorAtual { get; private set; }
         public bool terminada { get; private set; }
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;

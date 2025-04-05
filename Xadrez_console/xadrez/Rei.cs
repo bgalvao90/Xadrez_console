@@ -9,8 +9,10 @@ namespace Xadrez_console.xadrez
 {
     class Rei : Peca
     {
-        public Rei(Tabuleiro tab, Cor cor) : base(tab, cor)
+        private PartidaXadrez partida;
+        public Rei(Tabuleiro tab, Cor cor, PartidaXadrez partida) : base(tab, cor)
         {
+            this.partida = partida;
         }
         public override string ToString()
         {
@@ -20,6 +22,12 @@ namespace Xadrez_console.xadrez
         {
             Peca p = tab.peca(pos);
             return p == null || p.cor != cor;
+        }
+
+        private bool testeTorreParaRoque(Posicao pos)
+        {
+            Peca p = tab.peca(pos);
+            return p != null && p is Torre && p.cor == cor && p.QteMovimentos == 0;
         }
         public override bool[,] movimentosPossiveis()
         {
@@ -75,7 +83,10 @@ namespace Xadrez_console.xadrez
                 mat[pos.Linha, pos.Coluna] = true;
             }
 
-            return mat;
-        }
-    }
-}
+            //jogada especial roque
+            if (QteMovimentos == 0 && !partida.xeque)
+            {
+                //roque pequeno
+                Posicao posT1 = new Posicao(posicao.Linha, posicao.Coluna + 3);
+
+            }
