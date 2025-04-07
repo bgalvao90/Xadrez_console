@@ -138,11 +138,28 @@ namespace Xadrez_console.xadrez
         public void realizaJogada(Posicao origem, Posicao destino)
         {
             Peca pecaCapturada = executarMovimento(origem, destino);
+            
 
             if (estaEmXeque(jogadorAtual))
             {
                 desfazerMovimento(origem, destino, pecaCapturada);
                 throw new TabuleiroException("Você não pode se colocar em xeque!");
+            }
+
+            Peca p = tab.peca(destino);
+
+            // jogada especial promocao
+
+            if (p is Peao)
+            {
+                if ((p.cor == Cor.Branca && destino.Linha == 0) || (p.cor == Cor.Preta && destino.Linha == 7))
+                {
+                    p = tab.retirarPeca(destino);
+                    pecas.Remove(p);
+                    Peca dama = new Dama(tab, p.cor);
+                    tab.ColocarPeca(dama, destino);
+                    pecas.Add(dama);
+                }
             }
 
             if (estaEmXeque(adversaria(jogadorAtual)))
@@ -164,7 +181,7 @@ namespace Xadrez_console.xadrez
                 mudarJogador();
             }
 
-            Peca p = tab.peca(destino);
+           
             // jogada especial en passant
             if(p is Peao && (destino.Linha == origem.Linha - 2 || destino.Linha == origem.Linha + 2))
             {
